@@ -1,0 +1,312 @@
+/*
+    AetherVane (The Ultrasonic Ghost-Mesh Protocol)
+    Copyright (C) 2026 Vikram Kumar Sinha
+    License: GNU GPL v3.0
+*/
+
+:root {
+    --bg-color: #121212;
+    --surface-color: #1e1e1e;
+    --border-color: #333;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --accent-color: #2979ff; /* Electric Blue */
+    --accent-hover: #5390ff;
+    --danger-color: #ff5252;
+    --success-color: #00e676;
+    --gold-secure: #ffd700;
+    
+    --radius: 12px;
+    --spacing: 16px;
+    --font-stack: system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-stack);
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.app-wrapper {
+    width: 100%;
+    max-width: 800px; /* Tablet/Desktop constraint */
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing);
+    gap: var(--spacing);
+}
+
+/* --- Header --- */
+header.glass-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.brand h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.badge {
+    font-size: 0.7rem;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    vertical-align: middle;
+}
+
+.status-indicators {
+    display: flex;
+    gap: 8px;
+}
+
+.status-pill {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 20px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.status-pill.active {
+    border-color: var(--success-color);
+    color: var(--success-color);
+    background: rgba(0, 230, 118, 0.1);
+}
+
+.status-pill.busy {
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+/* --- Main Layout --- */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+    min-height: 0; /* Important for flex scrolling */
+}
+
+/* Glass Panels */
+.glass-panel {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Sonar Panel --- */
+#sonar-panel {
+    flex: 0 0 auto;
+    max-height: 150px;
+}
+
+.panel-header {
+    padding: 12px 16px;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.panel-header h2 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+#peer-list {
+    padding: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+.peer-tag {
+    background: #2a2a2a;
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.peer-tag:hover {
+    background: #333;
+    border-color: var(--text-secondary);
+}
+
+.peer-tag.secure {
+    border-color: var(--gold-secure);
+    color: var(--gold-secure);
+    background: rgba(255, 215, 0, 0.05);
+}
+
+/* --- Chat Panel --- */
+#chat-panel {
+    flex: 1;
+}
+
+#terminal-output {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sys-msg {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.03);
+    padding: 8px;
+    border-radius: 8px;
+    margin: 8px 0;
+}
+
+.msg-row {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.msg-in {
+    align-self: flex-start;
+    background: #2a2a2a;
+    border-bottom-left-radius: 2px;
+}
+
+.msg-out {
+    align-self: flex-end;
+    background: var(--accent-color);
+    color: white;
+    border-bottom-right-radius: 2px;
+}
+
+.msg-meta {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    margin-bottom: 4px;
+    display: block;
+}
+
+/* --- Controls --- */
+.controls-area {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.input-group {
+    display: flex;
+    gap: 8px;
+}
+
+input {
+    background: #121212;
+    border: 1px solid var(--border-color);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-stack);
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--accent-color);
+}
+
+#target-id { width: 90px; text-align: center; text-transform: uppercase; }
+#message-input { flex: 1; }
+
+/* Buttons */
+button {
+    cursor: pointer;
+    border: none;
+    font-family: var(--font-stack);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+button:active { transform: scale(0.98); }
+
+.btn-primary {
+    background: var(--accent-color);
+    color: white;
+    padding: 0 20px;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 12px;
+    background: #2a2a2a;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-full.active {
+    background: var(--success-color);
+    color: #000;
+    border-color: var(--success-color);
+}
+
+footer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+/* Mobile Tweaks */
+@media (max-width: 480px) {
+    .app-wrapper { padding: 0; height: 100vh; max-width: 100%; }
+    header, footer { padding: 10px 16px; }
+    main { gap: 1px; background: var(--border-color); } /* Separator look */
+    .glass-panel { border-radius: 0; border: none; }
+    .input-group { flex-wrap: wrap; }
+    #target-id { width: 100px; flex-grow: 1; }
+    #send-btn { width: 100%; }
+}

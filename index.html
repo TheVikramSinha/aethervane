@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none';">
+    <meta http-equiv="Permissions-Policy" content="microphone=(self), camera=(), geolocation=()">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>AetherVane | Secure Ultrasonic Mesh Messenger</title>
+    <meta name="description" content="AetherVane: An air-gapped, serverless mesh messenger using ultrasonic audio (FSK) and Military-Grade Encryption (ECDH/AES). Privacy-first, PWA-ready.">
+    <meta name="keywords" content="air-gapped messenger, ultrasonic communication, data-over-sound, Web Audio API, mesh network, offline chat, secure messaging, Vikram Kumar Sinha">
+    <meta name="author" content="Vikram Kumar Sinha">
+    <link rel="canonical" href="https://thevikramsinha.github.io/aethervane/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thevikramsinha.github.io/aethervane/">
+    <meta property="og:title" content="AetherVane | The Ultrasonic Ghost-Mesh">
+    <meta property="og:description" content="Communicate offline using sound waves. No Internet. No Servers. 100% Encrypted.">
+    <meta property="og:image" content="https://thevikramsinha.github.io/aethervane/assets/og-preview.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AetherVane | Ultrasonic Crypto-Mesh">
+    <meta name="twitter:description" content="Secure, offline communication via ultrasonic audio.">
+
+    <meta name="theme-color" content="#121212">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <header class="glass-panel">
+            <div class="brand">
+                <h1>AetherVane</h1>
+                <span class="badge">v3.0.0</span>
+            </div>
+            <div class="status-indicators">
+                <div id="pwa-status" class="status-pill">OFFLINE READY</div>
+                <div id="audio-status" class="status-pill">DSP IDLE</div>
+            </div>
+        </header>
+
+        <main>
+            <section id="sonar-panel" class="glass-panel">
+                <div class="panel-header">
+                    <h2>Nearby Signals</h2>
+                    <button id="scan-btn" class="btn-secondary">
+                        <span class="icon">📡</span> Scan
+                    </button>
+                </div>
+                <div id="peer-list" class="scroll-area">
+                    <div class="empty-state">
+                        <p>No ultrasonic signals detected.</p>
+                        <small>Click "Scan" to ping nearby devices.</small>
+                    </div>
+                </div>
+            </section>
+
+            <section id="chat-panel" class="glass-panel">
+                <div id="terminal-output" class="scroll-area" aria-live="polite">
+                    <div class="sys-msg">
+                        <strong>System Ready.</strong><br>
+                        Protocol: V3 (FSK + Hamming FEC + ECDH/AES)<br>
+                        Waiting for receiver initialization...
+                    </div>
+                </div>
+                
+                <div class="controls-area">
+                    <div class="input-group">
+                        <input type="text" id="target-id" placeholder="Target ID" maxlength="4" pattern="[0-9A-Fa-f]{4}">
+                        <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off">
+                        <button id="send-btn" class="btn-primary">Send</button>
+                    </div>
+                    <div class="utility-row">
+                        <button id="listen-btn" class="btn-full">Activate Receiver</button>
+                        <button id="install-btn" class="btn-full" style="display: none;">Install App</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+             GPL v3.0 Licensed • Built by Vikram Kumar Sinha
+        </footer>
+    </div>
+
+    <script src="crypto-layer.js" defer></script>
+    <script src="audio-engine.js" defer></script>
+    <script src="app.js" defer></script>
+</body>
+</html>
