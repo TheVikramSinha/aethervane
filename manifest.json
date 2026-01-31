@@ -1,25 +1,45 @@
 {
-    "name": "AetherVane Protocol",
+    "name": "AetherVane | Secure Mesh",
     "short_name": "AetherVane",
-    "description": "Ultrasonic Air-Gapped Mesh Messenger",
+    "description": "Secure, air-gapped ultrasonic mesh messenger with military-grade encryption.",
     "start_url": "./index.html",
     "display": "standalone",
-    "background_color": "#000000",
-    "theme_color": "#00ff41",
-    "orientation": "portrait",
+    "background_color": "#121212",
+    "theme_color": "#1e1e1e",
+    "orientation": "portrait-primary",
+    "id": "/aethervane/",
+    "scope": "/aethervane/",
     "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
         {
             "src": "assets/icon-192.png",
             "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any maskable"
+            "type": "image/png"
         },
         {
             "src": "assets/icon-512.png",
             "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any maskable"
+            "type": "image/png"
         }
     ],
-    "categories": ["utilities", "security", "social"]
+    "categories": [
+        "security",
+        "social",
+        "utilities"
+    ],
+    "screenshots": [],
+    "shortcuts": [
+        {
+            "name": "Scan for Peers",
+            "short_name": "Scan",
+            "description": "Start active sonar discovery",
+            "url": "./index.html?action=scan",
+            "icons": [{ "src": "favicon.svg", "sizes": "any" }]
+        }
+    ]
 }
